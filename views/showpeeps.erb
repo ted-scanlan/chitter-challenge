@@ -1,0 +1,9 @@
+<a href="/"> Go back </a>
+
+<ul>
+<% @peeps.reverse.each do |peep| %>
+<li class="peep" id="peep-<%= peep.id %>">
+  <p> <%= peep.peep %> </p>
+  <%= peep.time %>
+      <% end %>
+      </ul>
