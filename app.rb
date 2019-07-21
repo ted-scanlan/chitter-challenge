@@ -42,9 +42,7 @@ if is_valid?(params[:email])
       flash[:notice] = "Error: invalid email"
       redirect '/details'
     end
-
 end
-  #is_valid?
 
 
 get '/confirmation' do
@@ -56,6 +54,26 @@ end
 get '/showpeeps' do
   @peeps = Peep.all
   erb(:showpeeps)
+
+end
+
+get '/login' do
+
+  erb(:login)
+
+end
+
+post '/searching' do
+
+  user = User.find(username: params[:usernamelogin])
+  session[:user_id] = user.id
+
+  redirect '/logincomplete'
+end
+
+get '/logincomplete' do 
+
+erb(:logincomplete)
 
 end
 

@@ -4,7 +4,8 @@ require_relative './setup_test_database'
 ENV['ENVIRONMENT'] = 'test'
 RSpec.configure do |config|
   config.before(:each) do
-    setup_test_database
+    setup_test_database_peeps
+    setup_test_database_users
   end
 end
 
