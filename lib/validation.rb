@@ -1,8 +1,18 @@
-module UrlValidation
+require 'uri'
+# require 'active_support/core_ext/object/blank'
 
-def is_valid?(url)   #do for email   . also need to make surte all boxes are filled before successful signup
+module EmailValidation
 
-  url=~ /\A#{URI::regexp(['http', 'https'])}\z/
+    VALID_EMAIL_REGEX = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+
+def is_valid?(email)
+  # url=~ /\A#{URI::regexp(['http', 'https'])}\z/
+
+
+
+  email =~ VALID_EMAIL_REGEX
+
+  # email.match(URI::MailTo::EMAIL_REGEXP).present?
 
 
 end

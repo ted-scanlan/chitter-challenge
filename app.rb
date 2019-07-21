@@ -2,12 +2,18 @@ require 'capybara'
 require 'sinatra/base'
 require 'pg'
 require 'date'
+require 'sinatra/flash'
 require_relative './lib/peep.rb'
 require_relative './lib/validation.rb'
 require_relative './lib/user.rb'
 
 
 class Chitter < Sinatra::Base
+
+  enable :sessions
+
+include EmailValidation
+register Sinatra::Flash
 
 get '/' do
 
@@ -28,11 +34,18 @@ get '/details' do
 end
 
 post '/signup' do
-  User.create(name: params[:name], email: params[:email], username: params[:username], password: params[:password])
+
+if is_valid?(params[:email])
+      User.create(name: params[:name], email: params[:email], username: params[:username], password: params[:password])
+        redirect '/confirmation'
+    else
+      flash[:notice] = "Error: invalid email"
+      redirect '/details'
+    end
+
+end
   #is_valid?
 
-redirect '/confirmation'
-end
 
 get '/confirmation' do
 

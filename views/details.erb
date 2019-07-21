@@ -1,8 +1,10 @@
+<%= flash[:notice] %>
+
 <form action="/signup" method="post">
-  Name<input type="text" name="name" placeholder="enter name">
-  Email<input type="text" name="email" placeholder="enter email">
-  Create a username<input type="text" name="username" placeholder="enter username">
-  Create a password <input type="text" name="password" placeholder="enter password">
+  Name<input type="text" name="name" placeholder="enter name" required>
+  Email<input type="text" name="email" placeholder="enter email" required>
+  Create a username<input type="text" name="username" placeholder="enter username" required>
+  Create a password <input type="text" name="password" placeholder="enter password" required>
 
 <button type="submit" value="Submit">Submit</button>
 </form>
